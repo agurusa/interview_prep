@@ -1,4 +1,4 @@
-##Welcome to some basic interview prep exercises! 
+## Welcome to some basic interview prep exercises! 
 
 This is a compilation of my algorithms to the exercises in [Cracking The Coding Interview](https://www.amazon.com/Cracking-Coding-Interview-Programming-Questions/dp/0984782850) by Gayle Laakmaan McDowell. 
 
