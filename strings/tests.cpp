@@ -3,6 +3,7 @@
 #include "is_unique.cpp"
 #include "check_permutation.cpp"
 #include "urlify.cpp"
+#include "palindrome_permutation.cpp"
 
 SCENARIO("Strings can be tested for uniqueness", "[test_file]"){
 	WHEN("The input is a unique string"){
@@ -51,6 +52,27 @@ SCENARIO("A string with spaces is returned with %20 in place of the spaces", "[t
 		THEN("The string is returned with %20 in its place"){
 			std::string input = "Mr John Smith    ";
 			REQUIRE(urlify(input, 13) == "Mr%20John%20Smith");
+		}
+	}
+}
+
+SCENARIO("A string is checked to see if it is a permutation of a palindrome", "[test_file]"){
+	WHEN("The string is a permutation of a palindrome"){
+		THEN("is_palindrome() returns true"){
+			std::string input = "Tact Coa";
+			REQUIRE(is_palindrome(input) == true);
+		}
+	}
+	WHEN("The string is not a permutation of a palindrome"){
+		THEN("is_palindrome() returns false"){
+			std::string input = "not a palindrome";
+			REQUIRE(is_palindrome(input) == false);
+		}
+	}
+	WHEN("The string is an odd number of characters palindrome"){
+		THEN("is_palindrome() returns true"){
+			std::string input = "tacdatc";
+			REQUIRE(is_palindrome(input) == true);
 		}
 	}
 }
