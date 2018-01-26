@@ -7,6 +7,7 @@
 #include "one_away.cpp"
 #include "string_compression.cpp"
 #include "zero_matrix.cpp"
+#include "string_rotation.cpp"
 
 SCENARIO("Strings can be tested for uniqueness", "[test_file]"){
 	WHEN("The input is a unique string"){
@@ -172,6 +173,15 @@ SCENARIO("Given an MXN matrix"){
 				{1,1,1,1}
 			};
 			REQUIRE(zero_matrix(input) == input);
+		}
+	}
+}
+SCENARIO("See if one word is a rotation of another"){
+	WHEN("there are two strings that are permutations"){
+		THEN("return true"){
+			REQUIRE(isSubstring("waterbottle", "erbottlewat") == true);
+			REQUIRE(isSubstring("waterbottle", "erwatbottle") == false);
+			REQUIRE(isSubstring("waterbottle", "notthesame") == false);
 		}
 	}
 }
