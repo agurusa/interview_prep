@@ -5,6 +5,7 @@
 #include "urlify.cpp"
 #include "palindrome_permutation.cpp"
 #include "one_away.cpp"
+#include "string_compression.cpp"
 
 SCENARIO("Strings can be tested for uniqueness", "[test_file]"){
 	WHEN("The input is a unique string"){
@@ -92,6 +93,26 @@ SCENARIO("Two strings are checked to see if they are less than one edit away fro
 			REQUIRE(one_away("pale","ple") == true);
 			REQUIRE(one_away("pales", "pale") == true);
 			REQUIRE(one_away("pale", "bale") == true);
+		}
+	}
+}
+
+SCENARIO("The string is compressed if necessary, and is not compressed if there are all unique letters"){
+	WHEN("The string has both uppercase and lowercase letters"){
+		THEN("compress() still returns the correct response"){
+			REQUIRE(compress("AaBbcc") == "a2b2c2");
+			REQUIRE(compress("AbCd") == "a1b1c1d1");
+		}
+	}
+	WHEN("The string has duplicate letters"){
+		THEN("compress() should return the number of letters next to the letter, and remove the duplicates"){
+			REQUIRE(compress("aabccd") == "a2b1c2d1");
+			REQUIRE(compress("abcd") == "a1b1c1d1");
+		}
+	}
+	WHEN("The string has duplicate letters, but at different points of the string"){
+		THEN("compress() should not combine all the duplicate letters, but instead keep them grouped"){
+			REQUIRE(compress("aabcccccaaa") == "a2b1c5a3");
 		}
 	}
 }
