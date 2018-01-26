@@ -4,6 +4,7 @@
 #include "check_permutation.cpp"
 #include "urlify.cpp"
 #include "palindrome_permutation.cpp"
+#include "one_away.cpp"
 
 SCENARIO("Strings can be tested for uniqueness", "[test_file]"){
 	WHEN("The input is a unique string"){
@@ -73,6 +74,24 @@ SCENARIO("A string is checked to see if it is a permutation of a palindrome", "[
 		THEN("is_palindrome() returns true"){
 			std::string input = "tacdatc";
 			REQUIRE(is_palindrome(input) == true);
+		}
+	}
+}
+
+SCENARIO("Two strings are checked to see if they are less than one edit away from each other", "[test_file]"){
+	WHEN("The strings are more than one size apart"){
+		THEN("one_away should return false"){
+			std::string input1 = "test";
+			std::string input2 = "test11";
+			REQUIRE(one_away(input1,input2) == false);
+			REQUIRE(one_away("pale", "bake") == false);
+		}
+	}
+	WHEN("The strings are one size apart"){
+		THEN("one_away should return true"){
+			REQUIRE(one_away("pale","ple") == true);
+			REQUIRE(one_away("pales", "pale") == true);
+			REQUIRE(one_away("pale", "bale") == true);
 		}
 	}
 }
