@@ -6,6 +6,7 @@
 #include "palindrome_permutation.cpp"
 #include "one_away.cpp"
 #include "string_compression.cpp"
+#include "zero_matrix.cpp"
 
 SCENARIO("Strings can be tested for uniqueness", "[test_file]"){
 	WHEN("The input is a unique string"){
@@ -113,6 +114,64 @@ SCENARIO("The string is compressed if necessary, and is not compressed if there 
 	WHEN("The string has duplicate letters, but at different points of the string"){
 		THEN("compress() should not combine all the duplicate letters, but instead keep them grouped"){
 			REQUIRE(compress("aabcccccaaa") == "a2b1c5a3");
+		}
+	}
+}
+
+SCENARIO("Given an MXN matrix"){
+	WHEN("an element in that matrix is 0"){
+		THEN("it's entire row and column should be set to 0."){
+			std::vector<std::vector<int>> input = {
+				{1,1,1,1},
+				{1,0,1,1},
+				{1,1,1,1}
+			};
+			std::vector<std::vector<int>> return_vector = {
+				{1,0,1,1},
+				{0,0,0,0},
+				{1,0,1,1}
+			};
+			REQUIRE(zero_matrix(input) == return_vector);
+		}
+	}
+	WHEN("there are multiple elements in different rows that are 0"){
+		THEN("both rows and columns should be set to 0"){
+			std::vector<std::vector<int>> input = {
+				{1,1,1,0},
+				{1,0,1,1},
+				{1,1,1,1}
+			};
+			std::vector<std::vector<int>> return_vector = {
+				{0,0,0,0},
+				{0,0,0,0},
+				{1,0,1,0}
+			};
+			REQUIRE(zero_matrix(input) == return_vector);
+		}
+	}
+	WHEN("there are multiple elements in the same row that are 0"){
+		THEN("both columns and the singular row should be set to 0"){
+			std::vector<std::vector<int>> input = {
+				{1,1,1,1},
+				{1,0,1,0},
+				{1,1,1,1}
+			};
+			std::vector<std::vector<int>> return_vector= {
+				{1,0,1,0},
+				{0,0,0,0},
+				{1,0,1,0}
+			};
+			REQUIRE(zero_matrix(input) == return_vector);
+		}
+	}
+	WHEN("there are no elements that are 0"){
+		THEN("return the original matrix."){
+			std::vector<std::vector<int>> input = {
+				{1,1,1,1},
+				{1,2,1,1},
+				{1,1,1,1}
+			};
+			REQUIRE(zero_matrix(input) == input);
 		}
 	}
 }
