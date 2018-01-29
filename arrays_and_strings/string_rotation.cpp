@@ -21,6 +21,9 @@ bool isSubstring(std::string input1, std::string input2){
 				break;
 			}
 		}
+		// this actually won't work if the last character of input1 is the same as one of the characters in the 
+		// rotated section.
+		// TODO: fix this edge case.
 		for(int j = input2.size()-1; j >=0; j--){
 			std::cout << prefix << " ";
 			if(input2[j] != last_char){
