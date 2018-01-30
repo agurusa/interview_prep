@@ -1,5 +1,5 @@
 #include <iostream>
-
+#include <vector>
 // build the linked list
 class Node{
 	public:
@@ -8,6 +8,15 @@ class Node{
 
 	Node(int d){
 		data = d;
+	}
+	//included for comparisons in tests.cpp
+	friend bool operator == (const Node lhs, const Node rhs){
+		return(lhs.data == rhs.data);
+	}
+
+	friend std::ostream& operator <<( std::ostream& os, const Node& node){
+		os << node.data;
+		return os;
 	}
 };
 
