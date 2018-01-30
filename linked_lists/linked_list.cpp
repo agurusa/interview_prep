@@ -99,4 +99,12 @@ public:
 		}
 		return os;
 	}
+
+	Node* node_at_i(int i){
+		Node*n = head;
+		for(int j = 0; j < i; j++){
+			n = n->next;
+		}
+		return n;
+	}
 };
