@@ -6,7 +6,6 @@ Node *kth_element(const LinkedList list, int k){
 	for(int i = 0; i < k; i++){
 		fast_pointer = fast_pointer->next;
 		if(fast_pointer == NULL){
-			// return Node(slow_pointer->data);
 			return slow_pointer;
 		}
 	}
@@ -17,6 +16,5 @@ Node *kth_element(const LinkedList list, int k){
 		}
 		slow_pointer = slow_pointer->next;
 	}
-	// return Node(slow_pointer->data);
 	return slow_pointer;
 }

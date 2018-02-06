@@ -32,7 +32,6 @@ SCENARIO("Given a singly linked list, return the kth to last element"){
 	LinkedList input(input_v);
 	WHEN("The linked list has more than k nodes, with repeated nodes"){
 		THEN("Return the kth from last element"){
-			// REQUIRE(kth_element(input, 1) == Node(3));
 			REQUIRE(kth_element(input, 1) == input.node_at_i((input_v.size() - 1) - 1));
 		}
 	}
@@ -52,7 +51,19 @@ SCENARIO("Given a singly linked list and a node in that list"){
 	WHEN("The node exists in the linked list"){
 		THEN("Return the linked list without that node"){
 			LinkedList input = std::vector<int>{1, 2, 3, 1, 4, 6, 5, 3, 7};
-			REQUIRE(remove_node(input, 3) == input.node_at_i(3));
+			REQUIRE(remove_node(input, input.node_at_i(3)) == LinkedList(std::vector<int>{1,2,3,4,6,5,3,7}));
+		}
+	}
+	WHEN("The node is the head of the linked list"){
+		THEN("Remove the head node and update the linked list"){
+			LinkedList input = std::vector<int>{1, 2, 3, 1, 4, 6, 5, 3, 7};
+			REQUIRE(remove_node(input, input.node_at_i(0)) == LinkedList(std::vector<int>{2,3,1,4,6,5,3,7}));
+		}
+	}
+	WHEN("The node is the last node of the linked list"){
+		THEN("Remove the last node and update the tail"){
+			LinkedList input = std::vector<int>{1, 2, 3, 1, 4, 6, 5, 3, 7};
+			REQUIRE(remove_node(input, input.node_at_i(8)) == LinkedList(std::vector<int>{1,2,3,1,4,6,5,3}));
 		}
 	}
 }
