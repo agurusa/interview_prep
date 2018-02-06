@@ -45,20 +45,24 @@ public:
 	}
 	void deleteNode(Node *node){
 		Node *n = head;
-		if(n->data == node->data){
-			this->head = n->next;
-			return;
+		if(node == n){
+			head = n->next;
 		}
 		else{
 			while(n!=NULL){
 				Node *nn = n->next;
-				if(nn->data == node->data){
-					n->next = n->next->next;
-					return;
+				if(nn == node){
+					if(nn->next != NULL){
+						n->next = nn->next;
+					}
+					else{
+						n->next = NULL;
+					}
 				}
-				n = nn;
+				else{
+					n = n->next;
+				}
 			}
-			return;
 		}
 	}
 
@@ -98,5 +102,13 @@ public:
 			n = n->next;
 		}
 		return os;
+	}
+
+	Node* node_at_i(int i){
+		Node*n = head;
+		for(int j = 0; j < i; j++){
+			n = n->next;
+		}
+		return n;
 	}
 };
