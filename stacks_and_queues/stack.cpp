@@ -36,6 +36,9 @@ public:
 		}
 	};
 	void push(StackNode *sn){
+	// void push(const StackNode *sn){
+	// void push(StackNode* const sn){
+
 		StackNode *s = top;
 		top = sn;
 		if(s!= NULL){
@@ -47,6 +50,13 @@ public:
 		return true;
 	}
 	StackNode *top = NULL;
+
+	// included for stack_of_plates
+	int capacity = 10;
+	bool at_capacity(){
+		return(capacity <= 0);
+	}
+
 	//included for comparisons in tests.cpp
 	friend bool operator == (const Stack lhs, const Stack rhs){
 		StackNode *topLHS = lhs.top;

@@ -2,17 +2,18 @@
 
 #include "stack.cpp"
 #include "stack_min.cpp"
+#include "stack_of_plates.cpp"
 
 SCENARIO("Given a stack"){
 	Stack s;
 	s.push(new StackNode(4));
-	s.push(new StackNode(8));
+	s.push(new StackNode(8)); 
 	StackNode *min = new StackNode(3);
-	s.push(min);
+ 	s.push(min);
 	s.push(new StackNode(5));
 	s.push(new StackNode(8));
 	WHEN("The stack has already been built"){
-		THEN("The minimum item in the stack is returned in O(1) time"){
+		THEN("The minimum item in the stack is returned"){
 			REQUIRE(*min_node(s) == *min);
 		}
 	}
@@ -33,6 +34,18 @@ SCENARIO("Given a stack"){
 			min = new StackNode(1);
 			s.push(min);
 			REQUIRE(*min_node(s) == *min);
+		}
+	}
+}
+
+SCENARIO("Given a set of plates that are represented as StackNodes, store all the plates in stacks."){
+	SetOfStacks set;
+	for(int i = 0; i < 30; i++){
+		set.push(new StackNode(i));
+	}
+	WHEN("A stack is at capacity"){
+		THEN("Create a new stack to hold the new plate"){
+			REQUIRE(set.size() == 3);
 		}
 	}
 }
