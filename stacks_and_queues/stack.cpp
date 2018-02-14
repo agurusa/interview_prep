@@ -31,7 +31,8 @@ public:
 
 	}
 	void pop(){
-		if(top!=NULL){
+		//TODO: throw empty stack exception if top == NULL
+		if(top!= NULL){
 			top = top->next;
 		}
 	};
@@ -44,9 +45,16 @@ public:
 	};
 	StackNode *peek(){return top;};
 	bool isEmpty(){
-		return true;
+		return (top == NULL);
 	}
 	StackNode *top = NULL;
+
+	// included for stack_of_plates
+	int capacity = 10;
+	bool at_capacity(){
+		return(capacity <= 0);
+	}
+
 	//included for comparisons in tests.cpp
 	friend bool operator == (const Stack lhs, const Stack rhs){
 		StackNode *topLHS = lhs.top;
