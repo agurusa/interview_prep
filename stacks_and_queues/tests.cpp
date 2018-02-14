@@ -48,4 +48,21 @@ SCENARIO("Given a set of plates that are represented as StackNodes, store all th
 			REQUIRE(set.size() == 3);
 		}
 	}
+	WHEN("StackNodes are popped off of the set of stacks"){
+		THEN("Each node is popped off from the last stack in the set"){
+			for(int i = 0; i < 10; i++){
+				set.pop();
+			}
+			REQUIRE(set.size() == 2);
+		}
+	}
+	WHEN("A stack has nothing in it"){
+		THEN("It is deleted from the set"){
+			int initial_size = set.size();
+			for(int i = 0; i < (initial_size * 10); i++){
+				set.pop();
+			}
+			REQUIRE(set.size() == 1);
+		}
+	}
 }

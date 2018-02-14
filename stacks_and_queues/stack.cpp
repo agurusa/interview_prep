@@ -31,14 +31,12 @@ public:
 
 	}
 	void pop(){
-		if(top!=NULL){
+		//TODO: throw empty stack exception if top == NULL
+		if(top!= NULL){
 			top = top->next;
 		}
 	};
 	void push(StackNode *sn){
-	// void push(const StackNode *sn){
-	// void push(StackNode* const sn){
-
 		StackNode *s = top;
 		top = sn;
 		if(s!= NULL){
@@ -47,7 +45,7 @@ public:
 	};
 	StackNode *peek(){return top;};
 	bool isEmpty(){
-		return true;
+		return (top == NULL);
 	}
 	StackNode *top = NULL;
 
