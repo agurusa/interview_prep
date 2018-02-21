@@ -1,6 +1,7 @@
 #include "../catch.hpp"
 
 #include "route_between_nodes.cpp"
+#include "minimal_tree.cpp"
 
 SCENARIO("Given a directed graph with two or more nodes, given two nodes"){
 	// Graph test_graph();
@@ -30,6 +31,20 @@ SCENARIO("Given a directed graph with two or more nodes, given two nodes"){
 			REQUIRE(route_between_nodes(test_graph, node_0, node_2) == true);
 			REQUIRE(route_between_nodes(test_graph, node_2, node_1) == true);
 			REQUIRE(route_between_nodes(test_graph, node_0, node_3) == true);
+		}
+	}
+}
+
+SCENARIO("Given a sorted (increasing order) array with unique integer elements"){
+	WHEN("Each item is added into a tree"){
+		THEN("The items are added to a binary search tree with minimal height"){
+			std::vector<int> test_vector = {1, 2, 3, 4, 5, 6 , 7};
+			Tree *test_tree = new Tree();
+			for(int i = 0; i < test_vector.size(); i++){
+				TreeNode *tn = new TreeNode(test_vector[i]);
+				test_tree->Insert(tn);
+			}
+			REQUIRE(*minimal_tree(test_vector) == *test_tree);
 		}
 	}
 }
