@@ -17,24 +17,25 @@ public:
 		return os;
 	}
 	friend std::ostream& operator <<(std::ostream& os, const TreeNode &tn){
-		TreeNode * next;
-		os << tn.data << " :: ";
-		std::vector<TreeNode*> nodes = {};
-		std::vector<TreeNode*> children_nodes = {};
-		next = tn.left;
-		nodes.push_back(tn.right);
-		while(next!= NULL){
-			os << next->data << " ";
-			children_nodes.push_back(next->left);
-			children_nodes.push_back(next->right);
-			if(nodes.empty()){
-				os << "::";
-				nodes = children_nodes;
-				children_nodes.clear();
-			}
-			next = nodes[0];
-			nodes.erase(nodes.begin());
-		}
+		// TreeNode * next;
+		// os << tn.data << " :: ";
+		// std::vector<TreeNode*> nodes = {};
+		// std::vector<TreeNode*> children_nodes = {};
+		// next = tn.left;
+		// nodes.push_back(tn.right);
+		// while(next!= NULL){
+		// 	os << next->data << " ";
+		// 	children_nodes.push_back(next->left);
+		// 	children_nodes.push_back(next->right);
+		// 	if(nodes.empty()){
+		// 		os << "::";
+		// 		nodes = children_nodes;
+		// 		children_nodes.clear();
+		// 	}
+		// 	next = nodes[0];
+		// 	nodes.erase(nodes.begin());
+		// }
+		os << tn.data;
 		return os;
 	}
 };
@@ -124,7 +125,19 @@ TreeNode* minimal_binary_search_tree(std::vector<int> input, int start, int end,
 	}
 	int mid = (start + end)/2;
 	TreeNode *n = new TreeNode(input[mid]);
-	n->left = minimal_tree(input, start, mid - 1, tree);
-	n->right = minimal_tree(input, mid + 1, end, tree);
+	n->left = minimal_binary_search_tree(input, start, mid - 1, tree);
+	n->right = minimal_binary_search_tree(input, mid + 1, end, tree);
 	return n;
+}
+
+Tree* minimal_tree(std::vector<int> input, int start, int end, Tree *tree){
+	if(end < start){
+		return NULL;
+	}
+	int mid = (start + end)/2;
+	TreeNode *n = new TreeNode(input[mid]);
+	tree->Insert(n);
+	minimal_tree(input, start, mid - 1, tree);
+	minimal_tree(input, mid + 1, end, tree);
+	return tree;
 }
