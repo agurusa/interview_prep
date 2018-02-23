@@ -45,7 +45,7 @@ SCENARIO("Given a sorted (increasing order) array with unique integer elements")
 				test_tree->Insert(tn);
 			}
 			TreeNode *t = new TreeNode(1);
-			REQUIRE(*minimal_tree(test_vector, 0, test_vector.size() - 1, test_tree) == *test_tree);
+			REQUIRE(*minimal_tree(test_vector, 0, test_vector.size() - 1, new Tree()) == *test_tree);
 			// REQUIRE(*minimal_binary_search_tree(test_vector, 0, test_vector.size() - 1, test_tree) == *t);
 		}
 	}

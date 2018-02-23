@@ -17,24 +17,6 @@ public:
 		return os;
 	}
 	friend std::ostream& operator <<(std::ostream& os, const TreeNode &tn){
-		// TreeNode * next;
-		// os << tn.data << " :: ";
-		// std::vector<TreeNode*> nodes = {};
-		// std::vector<TreeNode*> children_nodes = {};
-		// next = tn.left;
-		// nodes.push_back(tn.right);
-		// while(next!= NULL){
-		// 	os << next->data << " ";
-		// 	children_nodes.push_back(next->left);
-		// 	children_nodes.push_back(next->right);
-		// 	if(nodes.empty()){
-		// 		os << "::";
-		// 		nodes = children_nodes;
-		// 		children_nodes.clear();
-		// 	}
-		// 	next = nodes[0];
-		// 	nodes.erase(nodes.begin());
-		// }
 		os << tn.data;
 		return os;
 	}
